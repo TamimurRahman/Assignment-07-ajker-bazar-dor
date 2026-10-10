@@ -1,6 +1,5 @@
-
-import ProductCard from "./ProductCard";
 import Link from "next/link";
+import CategoryProducts from "./CategoryProducts";
 
 interface Product {
   id: number;
@@ -18,11 +17,7 @@ interface Product {
   };
 }
 
-const CategoryPage = async ({
-  slug,
-}: {
-  slug: string;
-}) => {
+const CategoryPage = async ({ slug }: { slug: string }) => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/bazardor/products"
   );
@@ -56,8 +51,6 @@ const CategoryPage = async ({
 
   return (
     <main className="min-h-screen space-y-6 bg-[#f0f5f1] p-4 text-[#263229] sm:p-6">
-
-      {/* Category Title */}
       <section className="rounded-xl bg-white p-5">
         <h1 className="text-xl font-bold">
           {categoryProducts[0].categoryIcon}{" "}
@@ -69,30 +62,7 @@ const CategoryPage = async ({
         </p>
       </section>
 
-      {/* Sort Products */}
-      <section className="rounded-xl bg-white p-4">
-        <label htmlFor="sort">সাজান: </label>
-
-        <select
-          id="sort"
-          defaultValue="default"
-          className="rounded border p-2"
-        >
-          <option value="default">ডিফল্ট</option>
-          <option value="low">দাম: কম থেকে বেশি</option>
-          <option value="high">দাম: বেশি থেকে কম</option>
-        </select>
-      </section>
-
-      {/* Product Cards */}
-      <section>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {categoryProducts.map((p) => (
-            <ProductCard key={p.id} {...p} />
-          ))}
-        </div>
-      </section>
-
+      <CategoryProducts products={categoryProducts} />
     </main>
   );
 };
