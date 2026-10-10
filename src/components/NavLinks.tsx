@@ -13,7 +13,9 @@ const NavLinks = async() => {
   return (
     <div className='flex gap-2'>
       {
-        data.map((n:Navs) => (<Link key={n.id} href={n.slug}><span>{n.icon}</span>{n.nameBn}</Link>))
+        data.map((n:Navs) => (<Link key={n.id} href={`/category/${n.slug}`}>
+  <span>{n.icon}</span> {n.nameBn}
+</Link>))
       }
     </div>
   );
