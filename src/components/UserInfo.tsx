@@ -7,10 +7,25 @@ const UserInfo = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
   console.log(user);
+
+  const handleSignOut = async() =>{
+    await authClient.signOut();
+  }
   return (
     <div>
       {user ? (
-        <div></div>
+        <div>
+          <div className="avatar avatar-online">
+            <div className="w-24 rounded-full">
+              <img
+                alt="Tailwind-CSS-Avatar-component"
+                src={user?.image as string}
+              />
+            </div>
+          </div>
+          <h2>{user?.name}</h2>
+          <button onClick={handleSignOut} className="btn btn-error">SignOut</button>
+        </div>
       ) : (
         <div>
           <button className="btn btn-sm">Sign In</button>
