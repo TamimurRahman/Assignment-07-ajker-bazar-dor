@@ -2,6 +2,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -29,9 +30,11 @@ const UserInfo = () => {
             <div className="avatar">
               <div className="h-7 w-7 overflow-hidden rounded-full bg-gray-200">
                 {user.image ? (
-                  <img
+                  <Image
                     src={user.image}
                     alt={user.name || "User avatar"}
+                    width={28}
+                    height={28}
                     className="h-full w-full object-cover"
                   />
                 ) : (
