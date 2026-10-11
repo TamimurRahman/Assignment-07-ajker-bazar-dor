@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import NavLinks from "./NavLinks";
 import Marquee from "./Marquee";
 import UserInfo from "./UserInfo";
@@ -24,7 +24,10 @@ const Header = () => {
 
       <UserInfo />
       <NavLinks />
-      <Marquee />
+
+      <Suspense fallback={<div>&nbsp;</div>}>
+        <Marquee />
+      </Suspense>
     </div>
   );
 };
