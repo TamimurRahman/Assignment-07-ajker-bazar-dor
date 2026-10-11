@@ -9,11 +9,14 @@ const UserInfo = () => {
   console.log(user);
   return (
     <div>
-
-      <div>
-        <button className="btn btn-sm">Sign In</button>
-        <button className="btn btn-sm">Sign Up</button>
-      </div>
+      {user ? (
+        <div></div>
+      ) : (
+        <div>
+          <button className="btn btn-sm">Sign In</button>
+          <button className="btn btn-sm">Sign Up</button>
+        </div>
+      )}
     </div>
   );
 };
