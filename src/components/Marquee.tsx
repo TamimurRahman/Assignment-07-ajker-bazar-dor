@@ -1,4 +1,6 @@
+
 import MarqueeText from "react-fast-marquee";
+
 interface Headlines {
   id: number;
   nameBn: string;
@@ -8,31 +10,54 @@ interface Headlines {
     pct: number;
   };
 }
-const Marquee = async () => {
-  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
 
-  const data = await res.json();
-  const filterHeading: Headlines[] = data.filter((h:Headlines) => h.change.pct !== 0);
+const Marquee = async () => {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products"
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch market prices");
+  }
+
+  const data: Headlines[] = await res.json();
+
+  const filteredHeadlines = data.filter(
+    (item) => item.change.pct !== 0
+  );
+
   return (
-    <div>
-      <MarqueeText direction="left" speed={40}>
-        {filterHeading.map((h) => (
-          <span key={h.id} className="mx-6">
-            {h.nameBn} {h.today} টাকা/{h.unit}{" "}
-            <span
-              className={
-                h.change.pct > 0
-                  ? "text-red-500"
-                  : h.change.pct < 0
-                    ? "text-green-500"
-                    : "text-gray-500"
-              }
-            >
-              {h.change.pct > 0
-                ? ` ▲ ${h.change.pct}%`
-                : ` ▼ ${h.change.pct}%`}{" "}
+    <div className="mx-auto max-w-[1400px]">
+      <MarqueeText
+        direction="left"
+        speed={35}
+        pauseOnHover
+        gradient={false}
+      >
+        {filteredHeadlines.map((item) => (
+          <div
+            key={item.id}
+            className="flex shrink-0 items-center gap-1.5 border-r border-gray-200 px-4 py-1.5 text-[10px] sm:text-[11px]"
+          >
+            <span className="font-medium text-gray-700">
+              {item.nameBn}
             </span>
-          </span>
+
+            <span className="whitespace-nowrap text-gray-600">
+              {item.today} টাকা/{item.unit}
+            </span>
+
+            <span
+              className={`whitespace-nowrap font-semibold ${
+                item.change.pct > 0
+                  ? "text-red-500"
+                  : "text-green-600"
+              }`}
+            >
+              {item.change.pct > 0 ? "▲" : "▼"}{" "}
+              {Math.abs(item.change.pct)}%
+            </span>
+          </div>
         ))}
       </MarqueeText>
     </div>
