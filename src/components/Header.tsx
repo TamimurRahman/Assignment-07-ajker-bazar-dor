@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import NavLinks from "./NavLinks";
 import Marquee from "./Marquee";
+import UserInfo from "./UserInfo";
 
 const Header = () => {
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
@@ -15,10 +16,7 @@ const Header = () => {
           <div>{date}</div>
         </div> 
       </div>
-      <div>
-        <button className="btn btn-sm">Sign In</button>
-        <button className="btn btn-sm">Sign Up</button>
-      </div>
+<UserInfo></UserInfo>
 
       <NavLinks></NavLinks>
       <Marquee></Marquee>
