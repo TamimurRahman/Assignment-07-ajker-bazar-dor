@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 import React from "react";
 
 const UserInfo = () => {
@@ -8,9 +9,9 @@ const UserInfo = () => {
   const user = session?.user;
   console.log(user);
 
-  const handleSignOut = async() =>{
+  const handleSignOut = async () => {
     await authClient.signOut();
-  }
+  };
   return (
     <div>
       {user ? (
@@ -24,12 +25,19 @@ const UserInfo = () => {
             </div>
           </div>
           <h2>{user?.name}</h2>
-          <button onClick={handleSignOut} className="btn btn-error">SignOut</button>
+          <button onClick={handleSignOut} className="btn btn-error">
+            SignOut
+          </button>
         </div>
       ) : (
         <div>
-          <button className="btn btn-sm">Sign In</button>
-          <button className="btn btn-sm">Sign Up</button>
+          <Link href={"/signin"}>
+            {" "}
+            <button className="btn btn-sm">Sign In</button>
+          </Link>
+          <Link href={"/signup"}>
+            <button className="btn btn-sm">Sign Up</button>
+          </Link>
         </div>
       )}
     </div>

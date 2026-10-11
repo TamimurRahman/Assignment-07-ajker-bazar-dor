@@ -5,6 +5,7 @@ import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 
 import React from "react";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const onSubmit = async(e:React.SubmitEvent<HTMLElement>) =>{
@@ -15,11 +16,12 @@ const SignUpPage = () => {
    const {data,error} =  await authClient.signUp.email({...user,callbackURL:"/"})
 
    if(data){
+    toast.success("SignUp successful")
     redirect("/")
-    console.log(data);
+  
    }
    if(error){
-    console.log(error);
+    toast.error(error.message)
    }
   } 
   return (
