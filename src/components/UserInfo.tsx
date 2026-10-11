@@ -16,14 +16,16 @@ const UserInfo = () => {
     <div>
       {user ? (
         <div>
-          <div className="avatar avatar-online">
-            <div className="w-24 rounded-full">
-              <img
-                alt="Tailwind-CSS-Avatar-component"
-                src={user?.image as string}
-              />
+          <Link href={"/profile"}>
+            <div className="avatar avatar-online">
+              <div className="w-24 rounded-full">
+                <img
+                  alt="Tailwind-CSS-Avatar-component"
+                  src={user?.image as string}
+                />
+              </div>
             </div>
-          </div>
+          </Link>
           <h2>{user?.name}</h2>
           <button onClick={handleSignOut} className="btn btn-error">
             SignOut

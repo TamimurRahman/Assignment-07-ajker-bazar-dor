@@ -24,6 +24,18 @@ const SignUpPage = () => {
     toast.error(error.message)
    }
   } 
+
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  
+    if (error) {
+      toast.error(error.message);
+      console.log("Google sign-in error:", error);
+    }
+  };
   return (
     <div>
       <form onSubmit={onSubmit} action="">
@@ -42,6 +54,7 @@ const SignUpPage = () => {
           <input name="password" type="password" className="input" placeholder="Password" />
 
           <button  type="submit" className="btn btn-neutral mt-4">Login</button>
+          <button onClick={handleGoogleSignIn} className="btn">Sign In With Google</button>
         </fieldset>
       </form>
     </div>
