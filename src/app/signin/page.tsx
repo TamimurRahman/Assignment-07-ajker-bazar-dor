@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -6,16 +5,15 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const SignInPage = () => {
-  const onSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
-    const user = Object.fromEntries(
-      formData.entries()
-    ) as { email: string; password: string };
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
 
     const { data, error } = await authClient.signIn.email({
       ...user,
@@ -23,22 +21,32 @@ const SignInPage = () => {
     });
 
     if (data) {
-      toast.success('Sign In successfull!')
+      toast.success("Sign In successfull!");
       console.log(data);
     }
 
     if (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
+
+const handleGoogleSignIn = async () => {
+  const { data, error } = await authClient.signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+
+  if (error) {
+    toast.error(error.message);
+    console.log("Google sign-in error:", error);
+  }
+};
 
   return (
     <div>
       <form onSubmit={onSubmit}>
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-          <legend className="fieldset-legend">
-            সাইন ইন
-          </legend>
+          <legend className="fieldset-legend">সাইন ইন</legend>
 
           <label className="label">Email</label>
           <input
@@ -63,6 +71,7 @@ const SignInPage = () => {
           </button>
         </fieldset>
       </form>
+      <button onClick={handleGoogleSignIn} className="btn">Sign In With Google</button>
     </div>
   );
 };
