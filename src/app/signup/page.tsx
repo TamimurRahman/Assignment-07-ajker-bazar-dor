@@ -1,4 +1,3 @@
-
 "use client";
 
 import { authClient } from "@/lib/auth-client";
@@ -34,9 +33,9 @@ const SignUpPage = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
+  const handleSocialSignIn = async (provider: "google" | "github") => {
     const { error } = await authClient.signIn.social({
-      provider: "google",
+      provider,
       callbackURL: "/",
     });
 
@@ -48,7 +47,6 @@ const SignUpPage = () => {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#F0F5F0] px-4 py-10 text-[#26352B]">
       <div className="w-full max-w-[300px]">
-
         {/* Heading */}
         <div className="mb-4 text-center">
           <h1 className="text-[19px] font-bold tracking-tight">
@@ -62,7 +60,6 @@ const SignUpPage = () => {
 
         {/* Sign Up Card */}
         <section className="rounded-xl border border-[#E1E9E1] bg-[#FAFCFA] p-4">
-
           <form onSubmit={onSubmit}>
             {/* Name */}
             <div className="mb-3">
@@ -83,8 +80,6 @@ const SignUpPage = () => {
                 className="h-[30px] w-full rounded-md border border-[#E3EAE3] bg-transparent px-2 text-[10px] outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-100"
               />
             </div>
-
-           
 
             {/* Email */}
             <div className="mb-3">
@@ -143,40 +138,56 @@ const SignUpPage = () => {
             <div className="h-px flex-1 bg-[#DFE6DF]" />
           </div>
 
-          {/* Google Sign Up */}
-          <button
-            type="button"
-            onClick={handleGoogleSignIn}
-            className="flex h-[30px] w-full items-center justify-center gap-2 rounded-md border border-[#E3EAE3] text-[10px] font-medium transition hover:bg-gray-50"
-          >
-            <svg
-              viewBox="0 0 48 48"
-              className="h-3.5 w-3.5"
-              aria-hidden="true"
+          {/* Social Login */}
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => handleSocialSignIn("google")}
+              className="flex h-[27px] items-center justify-center gap-1 rounded-md border border-[#E3EAE3] px-1 text-[9px] font-medium transition hover:bg-gray-50"
             >
-              <path
-                fill="#EA4335"
-                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 3.05 13.22l7.98 6.19C12.92 13.72 18.01 9.5 24 9.5Z"
-                transform="translate(0 5)"
-              />
-              <path
-                fill="#4285F4"
-                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 38.08 46.98 31.96 46.98 24.55Z"
-              />
-              <path
-                fill="#FBBC05"
-                d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.53 10.78l8-6.19Z"
-                transform="translate(1)"
-              />
-              <path
-                fill="#34A853"
-                d="M24 48c6.48 0 11.93-2.13 15.9-5.8l-7.73-6c-2.14 1.45-4.89 2.3-8.17 2.3-5.99 0-11.08-4.22-12.9-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48Z"
-                transform="translate(0 -2)"
-              />
-            </svg>
-
-            Google দিয়ে অ্যাকাউন্ট তৈরি করুন
-          </button>
+              <svg
+                viewBox="0 0 48 48"
+                className="h-3 w-3 shrink-0"
+                aria-hidden="true"
+              >
+                <path
+                  fill="#EA4335"
+                  d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 3.05 13.22l7.98 6.19C12.92 13.72 18.01 9.5 24 9.5Z"
+                  transform="translate(0 5)"
+                />
+                <path
+                  fill="#4285F4"
+                  d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 38.08 46.98 31.96 46.98 24.55Z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.53 10.78l8-6.19Z"
+                  transform="translate(1)"
+                />
+                <path
+                  fill="#34A853"
+                  d="M24 48c6.48 0 11.93-2.13 15.9-5.8l-7.73-6c-2.14 1.45-4.89 2.3-8.17 2.3-5.99 0-11.08-4.22-12.9-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48Z"
+                  transform="translate(0 -2)"
+                />
+              </svg>
+              Google দিয়ে চালিয়ে যান
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSocialSignIn("github")}
+              className="flex h-[27px] items-center justify-center gap-1 rounded-md border border-[#E3EAE3] px-1 text-[9px] font-medium transition hover:bg-gray-50"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-3 w-3 shrink-0"
+                aria-hidden="true"
+              >
+                <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.61 5.21-5.1 5.49.4.34.75 1 .75 2.02v3.01c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
+              </svg>
+              GitHub দিয়ে চালিয়ে যান
+            </button>
+          </div>
 
           {/* Sign In Link */}
           <p className="mt-4 text-center text-[10px] text-gray-600">
