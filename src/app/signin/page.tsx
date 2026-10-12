@@ -30,17 +30,22 @@ const SignInPage = () => {
     }
   };
 
-  const handleSocialSignIn = async (provider: "google" | "github") => {
-    const { error } = await authClient.signIn.social({
-      provider,
-      callbackURL: "/",
-    });
-
-    if (error) {
-      toast.error(error.message ?? "Social sign in failed. Please try again.");
-    }
-  };
-
+const handleSocialSignIn = async (
+  provider: "google" | "github"
+) => {
+  await authClient.signIn.social({
+    provider,
+    callbackURL: "/",
+    fetchOptions: {
+      onSuccess: () => {
+        toast.success("Login successful!");
+      },
+      onError: (ctx) => {
+        toast.error(ctx.error.message || "Login failed!");
+      },
+    },
+  });
+};
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#F0F5F0] px-4 py-10 text-[#26352B]">
       <div className="w-full max-w-67">

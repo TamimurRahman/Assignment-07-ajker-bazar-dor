@@ -52,6 +52,8 @@ const CategoryPage = async ({ slug }: { slug: string }) => {
   return (
     <main className="min-h-screen space-y-6 bg-[#f0f5f1] p-4 text-[#263229] sm:p-6">
       <section className="rounded-xl bg-white p-5">
+
+    
         <h1 className="text-xl font-bold">
           {categoryProducts[0].categoryIcon}{" "}
           {categoryProducts[0].categoryNameBn}
@@ -61,6 +63,7 @@ const CategoryPage = async ({ slug }: { slug: string }) => {
           {categoryProducts.length}টি পণ্য
         </p>
       </section>
+      
 
       <CategoryProducts products={categoryProducts} />
     </main>

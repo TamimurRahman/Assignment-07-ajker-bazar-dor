@@ -33,17 +33,22 @@ const SignUpPage = () => {
     }
   };
 
-  const handleSocialSignIn = async (provider: "google" | "github") => {
-    const { error } = await authClient.signIn.social({
-      provider,
-      callbackURL: "/",
-    });
-
-    if (error) {
-      toast.error(error.message ?? "Google sign-in failed.");
-    }
-  };
-
+const handleSocialSignIn = async (
+  provider: "google" | "github"
+) => {
+  await authClient.signIn.social({
+    provider,
+    callbackURL: "/",
+    fetchOptions: {
+      onSuccess: () => {
+        toast.success("SignUp successful!");
+      },
+      onError: (ctx) => {
+        toast.error(ctx.error.message || "SignUp failed!");
+      },
+    },
+  });
+};
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#F0F5F0] px-4 py-10 text-[#26352B]">
       <div className="w-full max-w-[300px]">
