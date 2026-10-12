@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
+
 
 interface Navs {
   id: string;
@@ -9,8 +9,8 @@ interface Navs {
 }
 
 const NavLinks = async () => {
-  "use cache";
-  cacheLife("hours");
+  
+
 
   let data: Navs[] = [];
 

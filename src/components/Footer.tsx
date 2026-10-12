@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="mt-auto border-t border-[#E1E9E1] bg-[#F0F5F0]">
-      <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-3 px-5 py-5 sm:flex-row sm:items-center sm:px-6">
+      <div className="mx-auto flex max-w-300 flex-col items-start justify-between gap-3 px-5 py-5 sm:flex-row sm:items-center sm:px-6">
 
         {/* Left: Brand */}
         <div>
@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
 
         {/* Right: Disclaimer */}
-        <p className="text-[10px] leading-relaxed text-gray-500 sm:max-w-[380px] sm:text-right">
+        <p className="text-[10px] leading-relaxed text-gray-500 sm:max-w-95 sm:text-right">
           সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে
           পরিবর্তিত হয়।
         </p>

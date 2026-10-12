@@ -32,7 +32,7 @@ const SignInPage = () => {
   };
 
   const handleSocialSignIn = async (
-    provider: "google" | "github"
+    provider: "google"
   ) => {
     const { error } = await authClient.signIn.social({
       provider,
@@ -46,7 +46,7 @@ const SignInPage = () => {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#F0F5F0] px-4 py-10 text-[#26352B]">
-      <div className="w-full max-w-[268px]">
+      <div className="w-full max-w-67">
 
         {/* Heading */}
         <div className="mb-4 text-center">
@@ -61,7 +61,7 @@ const SignInPage = () => {
         </div>
 
         {/* Sign In Card */}
-        <div className="rounded-xl border border-[#E1E9E1] bg-[#FAFCFA] p-[15px]">
+        <div className="rounded-xl border border-[#E1E9E1] bg-[#FAFCFA] p-3.75">
 
           <form onSubmit={onSubmit}>
 
@@ -81,7 +81,7 @@ const SignInPage = () => {
                 placeholder="you@example.com"
                 required
                 autoComplete="email"
-                className="h-[26px] w-full rounded-md border border-[#E3EAE3] bg-transparent px-2 text-[10px] outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-100"
+                className="h-6.5 w-full rounded-md border border-[#E3EAE3] bg-transparent px-2 text-[10px] outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-100"
               />
             </div>
 
@@ -101,14 +101,14 @@ const SignInPage = () => {
                 placeholder="কমপক্ষে ৮ অক্ষর"
                 required
                 autoComplete="current-password"
-                className="h-[26px] w-full rounded-md border border-[#E3EAE3] bg-transparent px-2 text-[10px] outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-100"
+                className="h-6.5 w-full rounded-md border border-[#E3EAE3] bg-transparent px-2 text-[10px] outline-none transition focus:border-green-600 focus:ring-1 focus:ring-green-100"
               />
             </div>
 
             {/* Submit */}
             <button
               type="submit"
-              className="mt-1 h-[27px] w-full rounded-md bg-[#07883F] text-[10px] font-semibold text-white shadow-[0_2px_3px_rgba(0,0,0,0.2)] transition hover:bg-[#067435] active:scale-[0.99]"
+              className="mt-1 h-6.75 w-full rounded-md bg-[#07883F] text-[10px] font-semibold text-white shadow-[0_2px_3px_rgba(0,0,0,0.2)] transition hover:bg-[#067435] active:scale-[0.99]"
             >
               সাইন ইন
             </button>
@@ -124,7 +124,7 @@ const SignInPage = () => {
           </div>
 
           {/* Social Login */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex items-center justify-center">
 
             <button
               type="button"
@@ -160,22 +160,6 @@ const SignInPage = () => {
               Google দিয়ে লগইন
             </button>
 
-            <button
-              type="button"
-              onClick={() => handleSocialSignIn("github")}
-              className="flex h-[27px] items-center justify-center gap-1 rounded-md border border-[#E3EAE3] px-1 text-[9px] font-medium transition hover:bg-gray-50"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-3 w-3 shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.61 5.21-5.1 5.49.4.34.75 1 .75 2.02v3.01c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
-              </svg>
-
-              GitHub দিয়ে লগইন
-            </button>
           </div>
 
           {/* Sign Up Link */}
