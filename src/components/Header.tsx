@@ -5,6 +5,7 @@ import NavLinks from "./NavLinks";
 import Marquee from "./Marquee";
 import UserInfo from "./UserInfo";
 import HeaderDate from "./HeaderDate";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -12,7 +13,9 @@ const Header = () => {
       {/* Top Header */}
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         {/* Logo and Title */}
+
         <div className="flex shrink-0 items-center gap-2">
+          <Link href={'/'}>
           <Image
             src="/Stack.png"
             width={45}
@@ -20,7 +23,7 @@ const Header = () => {
             alt="বাজার দর logo"
             priority
           />
-
+</Link>
           <div>
             <h1 className="text-lg font-bold text-[#263229] sm:text-xl">
               বাজার দর

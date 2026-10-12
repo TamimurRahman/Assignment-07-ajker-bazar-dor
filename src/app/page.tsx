@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Products from "@/components/Banner/Products";
+import Hero from "@/components/Banner/Hero";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
             <span className="loading loading-spinner loading-lg"></span>
           </div>
         }
-      >
+      > <Hero></Hero>
         <Products />
       </Suspense>
     </div>

@@ -34,7 +34,7 @@ const Banner = async () => {
   );
 
   return (
-    <main className="space-y-8 bg-[#f0f5f1] p-4 text-[#263229] sm:p-6">
+    <main className="space-y-8  p-4 text-[#263229] sm: container mx-auto">
 
       {/* Price increased */}
       <section>
