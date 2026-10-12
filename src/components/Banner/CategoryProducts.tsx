@@ -36,14 +36,14 @@ const CategoryProducts = ({
 
   return (
     <>
-      <section className="rounded-xl bg-white p-4">
-        <label htmlFor="sort">সাজান: </label>
+      <section className="flex items-center justify-end gap-2 rounded-xl border border-[#e1e9e2] bg-[#fafcfb] p-3">
+        <label htmlFor="sort" className="text-xs text-gray-500">সাজান: </label>
 
         <select
           id="sort"
           value={sort}
           onChange={(e) => setSort(e.target.value)}
-          className="rounded border p-2"
+           className="rounded-lg border border-[#dce3dd] bg-white px-2 py-2 text-xs outline-none focus:border-green-600"
         >
           <option value="default">ডিফল্ট</option>
           <option value="low">দাম: কম থেকে বেশি</option>
